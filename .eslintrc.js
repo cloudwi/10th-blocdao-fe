@@ -28,6 +28,6 @@ module.exports = {
     'preferred-import'
   ],
   rules: {
-    '@typescript-eslint/explicit-function-return-type': 'off'
+    '@typescript-eslint/explicit-function-return-type': ['off', { allowExpressions: true }]
   }
 }
