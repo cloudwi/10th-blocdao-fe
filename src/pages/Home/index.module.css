@@ -1,0 +1,138 @@
+
+.header{
+  position : relative;
+  width:100%;
+  height:75px;
+  padding-top:25px;
+  font-weight:700;
+  color:#ffffff;
+  border-bottom:1px solid #efefef;
+  background: #FD72FC;
+}
+.header .logo_section{
+  position:absolute;
+  left:30px;
+  top:29px;
+  z-index:5;
+  width:105px;
+}
+
+.header .logo img{
+  width:100%;
+}
+.header .page_title{
+  position:absolute;
+  left:170px;
+  padding-left:20px;
+  border-left:1px solid #ffffff;
+  line-height:20px;
+  margin-top:3px;
+  color:#ffffff;
+}
+
+.header .main_menu{
+  position:absolute;
+  right:30px;
+}
+
+.header .main_menu ul li{
+  margin:0px 15px;
+  cursor:pointer;
+  display: inline-block;
+}
+
+.header .main_menu ul li .login_menu{
+  border-left:1px solid #ddd;
+  padding-left:30px;
+}
+
+.section input[id*="slide"] {
+  display:none;
+}
+.section .slidewrap{
+  max-width:1920px;
+  margin:0 auto;
+  overflow:hidden;
+}
+.section .slidelist{
+  white-space:nowrap;
+  font-size:0;
+}
+.section .slidelist > li{
+  display:inline-block;
+  vertical-align:middle;
+  width:100%
+}
+.section .slidelist > li > a img{
+  width:100%;
+}
+.section .slidelist label{
+  position:absolute;
+  z-index:10;
+  top:50%;
+  transform:translateY(-50%);
+  padding:50px;
+  cursor:pointer;
+}
+.section .slidelist .left{
+  left:20px;
+  background: url('../../assets/home/left.png') center center / 30% no-repeat;
+}
+.section .slidelist .right{
+  right:20px;
+  background: url('../../assets/home/right.png') center center / 30% no-repeat;
+}
+
+.section [id="slide01"]:checked ~ .slidewrap .slidelist > li {transform:translateX(0%) ;}
+.section [id="slide02"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-100%) ;}
+
+.card {
+  border: none;
+  border-radius: 10px
+}
+
+.c-details span {
+  font-weight: 300;
+  font-size: 13px
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  background-color: #eee;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 39px
+}
+
+.badge span {
+  background-color: #fffbec;
+  width: 60px;
+  height: 25px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  display: flex;
+  color: #fed85d;
+  justify-content: center;
+  align-items: center
+}
+
+.progress {
+  height: 10px;
+  border-radius: 10px
+}
+
+.progress div {
+  background-color: #FD72FC
+}
+
+.text1 {
+  font-size: 14px;
+  font-weight: 600
+}
+
+.text2 {
+  color: #a5aec0
+}

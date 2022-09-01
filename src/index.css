@@ -11,3 +11,34 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'establishRetrosansOTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+  font-weight:400;
+  font-size: 15px;
+  font-family: 'establishRetrosansOTF';
+  line-height:1.8em;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  color:#3c3c3c;
+  margin:0px;
+  padding:0px;
+}
+
+ul, li{
+  list-style:none;
+  margin:0px;
+  padding:0px;
+}
+
+a{
+  color:#3c3c3c;
+  text-decoration:none;
+}
+
