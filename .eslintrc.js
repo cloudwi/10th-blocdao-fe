@@ -8,13 +8,24 @@ module.exports = {
     'standard-with-typescript'
   ],
   overrides: [
+    {
+      files: ['src/**/*.{ts,tsx}'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: ['./tsconfig.json']
+      },
+      rules: {
+        'preferred-import/ts-imports': 'error'
+      }
+    }
   ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
   plugins: [
-    'react'
+    'react',
+    'preferred-import'
   ],
   rules: {
   }

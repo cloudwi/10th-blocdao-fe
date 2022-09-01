@@ -2241,7 +2241,7 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
-"@typescript-eslint/utils@5.36.1", "@typescript-eslint/utils@^5.13.0":
+"@typescript-eslint/utils@5.36.1", "@typescript-eslint/utils@^5.13.0", "@typescript-eslint/utils@^5.27.1":
   version "5.36.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.36.1.tgz#136d5208cc7a3314b11c646957f8f0b5c01e07ad"
   integrity sha512-lNj4FtTiXm5c+u0pUehozaUWhh7UYKnwryku0nxJlYUEWetyG92uw2pr+2Iy4M/u0ONMKzfrx7AsGBTCzORmIg==
@@ -4736,6 +4736,14 @@ eslint-plugin-n@^15.0.0:
     minimatch "^3.1.2"
     resolve "^1.22.1"
     semver "^7.3.7"
+
+eslint-plugin-preferred-import@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-preferred-import/-/eslint-plugin-preferred-import-1.0.12.tgz#444e195cd657f350a7d0a36709bbcd30d9bf2dc7"
+  integrity sha512-97yH0IurKUQ1bukB3F6bzgNxwjtMtbwRa4r7VshbXkch7LN4zfieNoOdKy1M29lyo5+KA5a86p10YMQWMEwImQ==
+  dependencies:
+    "@typescript-eslint/utils" "^5.27.1"
+    micromatch "^4.0.5"
 
 eslint-plugin-promise@^6.0.0:
   version "6.0.1"
