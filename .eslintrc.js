@@ -28,6 +28,22 @@ module.exports = {
     'preferred-import'
   ],
   rules: {
-    '@typescript-eslint/explicit-function-return-type': ['off', { allowExpressions: true }]
+    '@typescript-eslint/explicit-function-return-type': ['off', { allowExpressions: true }],
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always',
+        alphabetize: { order: 'asc', caseInsensitive: true },
+        groups: ['builtin', 'external', 'internal', 'unknown', ['parent', 'sibling', 'index']],
+        pathGroups: [
+          {
+            pattern: '{assets,components,hooks,pages,styles,types}/**',
+            group: 'external',
+            position: 'after'
+          }
+        ],
+        pathGroupsExcludedImportTypes: ['builtin']
+      }
+    ]
   }
 }
