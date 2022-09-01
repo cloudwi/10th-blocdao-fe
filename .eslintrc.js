@@ -1,32 +1,26 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'standard-with-typescript'
-  ],
+  extends: ['standard-with-typescript', 'plugin:prettier/recommended', 'plugin:react/recommended'],
   overrides: [
     {
       files: ['src/**/*.{ts,tsx}'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: ['./tsconfig.json']
+        project: ['./tsconfig.json'],
       },
       rules: {
-        'preferred-import/ts-imports': 'error'
-      }
-    }
+        'preferred-import/ts-imports': 'error',
+      },
+    },
   ],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  plugins: [
-    'react',
-    'preferred-import'
-  ],
+  plugins: ['prettier', 'react', 'preferred-import'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': ['off', { allowExpressions: true }],
     'import/order': [
@@ -39,11 +33,11 @@ module.exports = {
           {
             pattern: '@{assets,components,hooks,pages,styles,types}/**',
             group: 'external',
-            position: 'after'
-          }
+            position: 'after',
+          },
         ],
-        pathGroupsExcludedImportTypes: ['builtin']
-      }
-    ]
-  }
+        pathGroupsExcludedImportTypes: ['builtin'],
+      },
+    ],
+  },
 }
