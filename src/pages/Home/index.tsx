@@ -1,9 +1,10 @@
 import classNames from 'classnames/bind'
 import React, { useMemo } from 'react'
 
-import LogoImg from '../../assets/home/logo.svg'
-import Slide01Img from '../../assets/home/slide01.jpg'
-import Slide02Img from '../../assets/home/slide02.jpg'
+import LogoImg from 'assets/home/logo.svg'
+import Slide01Img from 'assets/home/slide01.jpg'
+import Slide02Img from 'assets/home/slide02.jpg'
+
 import styles from './index.module.css'
 
 const HomePage: React.FC = () => {
