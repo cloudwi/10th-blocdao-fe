@@ -1,3 +1,4 @@
+import { FirebaseService } from '@services/firebase'
 import classNames from 'classnames/bind'
 import React, { useMemo } from 'react'
 
@@ -7,6 +8,14 @@ import styles from './index.module.css'
 
 const Header: React.FC = () => {
   const cx = useMemo(() => classNames.bind(styles), [])
+
+  const handleClickLogin = async () => {
+    const token = await FirebaseService.requestLoginAndGetToken()
+
+    if (token !== null) {
+      alert(`Login success : ${token}`)
+    }
+  }
 
   return (
     <>
@@ -19,7 +28,9 @@ const Header: React.FC = () => {
           <ul>
             <li>새 글쓰기</li>
             <li>메이트모집</li>
-            <li className={cx('login_menu')}>로그인/회원가입</li>
+            <li className={cx('login_menu')} onClick={handleClickLogin}>
+              로그인/회원가입
+            </li>
           </ul>
         </div>
       </div>
