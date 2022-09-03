@@ -17,11 +17,32 @@ const auth = getAuth(app)
 
 const googleProvider = new GoogleAuthProvider()
 
-const requestLoginAndGetToken = async (): Promise<string | null> => {
+const requestLogin = async (): Promise<{
+  accessToken: string
+  displayName: string
+  photoURL: string
+  email: string
+  phoneNumber: string
+} | null> => {
   try {
     const result = await signInWithPopup(auth, googleProvider)
+    const { user } = result
     const credential = GoogleAuthProvider.credentialFromResult(result)
-    return credential?.accessToken ?? null
+    if (credential === null) {
+      throw new Error()
+    }
+    const { accessToken } = credential
+    if (accessToken === undefined) {
+      throw new Error()
+    }
+    const { displayName, photoURL, email, phoneNumber } = user
+    return {
+      accessToken,
+      displayName: displayName ?? 'Unknown',
+      photoURL: photoURL ?? '',
+      email: email ?? '',
+      phoneNumber: phoneNumber ?? '',
+    }
   } catch (error: unknown) {
     if (error instanceof FirebaseError) {
       const errorMessage = error.message
@@ -33,4 +54,4 @@ const requestLoginAndGetToken = async (): Promise<string | null> => {
   }
 }
 
-export const FirebaseService = { requestLoginAndGetToken }
+export const FirebaseService = { requestLogin }
