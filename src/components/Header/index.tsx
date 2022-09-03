@@ -2,6 +2,7 @@ import { FirebaseService } from '@services/firebase'
 import { MemberService } from '@services/member'
 import classNames from 'classnames/bind'
 import React, { useMemo } from 'react'
+import { Link } from 'react-router-dom'
 
 import LogoImg from 'assets/home/logo.svg'
 
@@ -29,14 +30,22 @@ const Header: React.FC = () => {
   return (
     <>
       <div className={cx('header')}>
-        <div className={cx('logo_section')}>
-          <img src={LogoImg} />
-        </div>
-        <div className={cx('page_title')}>블록다오</div>
+        <Link to={'/'}>
+          <a>
+            <div className={cx('logo_section')}>
+              <img src={LogoImg} />
+            </div>
+            <div className={cx('page_title')}>블록다오</div>
+          </a>
+        </Link>
         <div className={cx('main_menu')}>
           <ul>
-            <li>새 글쓰기</li>
-            <li>메이트모집</li>
+            <Link to={'/write'}>
+              <li>새 글쓰기</li>
+            </Link>
+            <Link to={'/find'}>
+              <li>메이트모집</li>
+            </Link>
             <li className={cx('login_menu')} onClick={handleClickSignUpOrSignIn}>
               로그인/회원가입
             </li>
