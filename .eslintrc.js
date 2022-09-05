@@ -20,7 +20,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['prettier', 'react', 'preferred-import'],
+  plugins: ['prettier', 'react', 'preferred-import', 'sort-annotation'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': ['off', { allowExpressions: true }],
     'import/order': [
@@ -45,5 +45,6 @@ module.exports = {
         checksVoidReturn: false,
       },
     ],
+    'sort-annotation/sort-keys': 'warn',
   },
 }

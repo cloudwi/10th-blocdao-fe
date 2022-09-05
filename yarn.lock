@@ -5262,6 +5262,13 @@ eslint-plugin-react@^7.27.1, eslint-plugin-react@^7.31.1:
     semver "^6.3.0"
     string.prototype.matchall "^4.0.7"
 
+eslint-plugin-sort-annotation@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-sort-annotation/-/eslint-plugin-sort-annotation-1.0.4.tgz#6a652a85d8d1de221db4e7bd35adc709bc452e69"
+  integrity sha512-YN+1c+EuW4eS7wO9ZgjdGZlnvuEHEew2gOmupZct7ZJ01XVhpZJNiP/X8J65cd2IHmBmE26//2BaKjjGrGMRHQ==
+  dependencies:
+    "@typescript-eslint/utils" "^5.27.1"
+
 eslint-plugin-testing-library@^5.0.1:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-5.6.0.tgz#91e810ecb838f86decc9b5202876c87e42d73ea7"
