@@ -31,7 +31,7 @@ module.exports = {
         groups: ['builtin', 'external', 'internal', 'unknown', ['parent', 'sibling', 'index']],
         pathGroups: [
           {
-            pattern: '{assets,@{components,hooks,pages,styles,types}}/**',
+            pattern: '{assets,@{components,hooks,pages,styles,types,services}}/**',
             group: 'external',
             position: 'after',
           },
