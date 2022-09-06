@@ -32,6 +32,8 @@ const requestLogin = async (): Promise<{
       throw new Error()
     }
 
+    console.log({ user, credential }) // TODO: Logging for test
+
     const { idToken } = credential
     if (idToken === undefined) {
       throw new Error()
