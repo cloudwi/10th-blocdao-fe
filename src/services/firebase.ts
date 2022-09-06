@@ -18,7 +18,7 @@ const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()
 
 const requestLogin = async (): Promise<{
-  accessToken: string
+  idToken: string
   displayName: string
   photoURL: string
   email: string
@@ -32,15 +32,13 @@ const requestLogin = async (): Promise<{
       throw new Error()
     }
 
-    console.log({ user, credential }) // TODO: Logging for test
-
-    const { accessToken } = credential
-    if (accessToken === undefined) {
+    const { idToken } = credential
+    if (idToken === undefined) {
       throw new Error()
     }
     const { displayName, photoURL, email, phoneNumber } = user
     return {
-      accessToken,
+      idToken,
       displayName: displayName ?? 'Unknown',
       photoURL: photoURL ?? '',
       email: email ?? '',

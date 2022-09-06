@@ -18,7 +18,7 @@ const Header: React.FC = () => {
     }
 
     await MemberService.signUp({
-      token: loginInfo.accessToken,
+      token: loginInfo.idToken,
       nickName: loginInfo.displayName,
       imageUrl: loginInfo.photoURL,
       email: loginInfo.email,
