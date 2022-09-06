@@ -18,7 +18,7 @@ const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()
 
 const requestLogin = async (): Promise<{
-  idToken: string
+  token: string
   displayName: string
   photoURL: string
   email: string
@@ -27,20 +27,13 @@ const requestLogin = async (): Promise<{
   try {
     const result = await signInWithPopup(auth, googleProvider)
     const { user } = result
-    const credential = GoogleAuthProvider.credentialFromResult(result)
-    if (credential === null) {
-      throw new Error()
-    }
-
-    console.log({ user, credential }) // TODO: Logging for test
-
-    const { idToken } = credential
-    if (idToken === undefined) {
+    const token = await result.user.getIdToken()
+    if (token.length === 0) {
       throw new Error()
     }
     const { displayName, photoURL, email, phoneNumber } = user
     return {
-      idToken,
+      token,
       displayName: displayName ?? 'Unknown',
       photoURL: photoURL ?? '',
       email: email ?? 'unknown@gmail.com',
