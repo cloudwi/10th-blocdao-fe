@@ -43,8 +43,8 @@ const requestLogin = async (): Promise<{
       idToken,
       displayName: displayName ?? 'Unknown',
       photoURL: photoURL ?? '',
-      email: email ?? '',
-      phoneNumber: phoneNumber ?? '',
+      email: email ?? 'unknown@gmail.com',
+      phoneNumber: phoneNumber ?? '01000000000',
     }
   } catch (error: unknown) {
     if (error instanceof FirebaseError) {
