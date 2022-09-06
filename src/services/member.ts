@@ -16,6 +16,7 @@ interface SignUpParam {
   email: string
   phone: string
   profileLink: string
+  memberStacks: number[]
 }
 
 const signUp = async ({ token, nickName, imageUrl, email, phone, profileLink }: SignUpParam) => {

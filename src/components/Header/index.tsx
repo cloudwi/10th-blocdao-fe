@@ -23,6 +23,7 @@ const Header: React.FC = () => {
       imageUrl: loginInfo.photoURL,
       email: loginInfo.email,
       phone: loginInfo.phoneNumber,
+      memberStacks: [],
       profileLink: '',
     })
   }
