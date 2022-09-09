@@ -46,5 +46,6 @@ module.exports = {
       },
     ],
     'sort-annotation/sort-keys': 'warn',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
   },
 }
