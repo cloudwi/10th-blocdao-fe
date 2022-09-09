@@ -4,10 +4,13 @@ const BASE_URL = 'https://blocdao.herokuapp.com/api/member'
 
 const memberAxios = axios.create({ baseURL: BASE_URL })
 
-memberAxios.interceptors.response.use(undefined, (error) => {
-  console.error(error)
-  return null
-})
+interface LoginParams {
+  token: string
+}
+
+const signIn = async ({ token }: LoginParams) => {
+  await memberAxios.get('/login', { headers: { Authorization: `Bearer ${token}` } })
+}
 
 interface SignUpParam {
   token: string
@@ -28,5 +31,6 @@ const signUp = async ({ token, nickName, imageUrl, email, phone, profileLink, me
 }
 
 export const MemberService = {
+  signIn,
   signUp,
 }

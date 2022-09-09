@@ -1,5 +1,5 @@
-import { FirebaseError, initializeApp } from 'firebase/app'
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { initializeApp } from 'firebase/app'
+import { browserLocalPersistence, getAuth, GoogleAuthProvider, setPersistence, signInWithPopup } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCo_ovOFKyhUwvqFgoC-ex6UJtx-FS_8v0',
@@ -17,37 +17,39 @@ const auth = getAuth(app)
 
 const googleProvider = new GoogleAuthProvider()
 
-const requestLogin = async (): Promise<{
+const getCurrentUID = (): string | null => {
+  return auth.currentUser?.uid ?? null
+}
+
+const signInWithGoogle = async (): Promise<{
+  uid: string
   token: string
   displayName: string
   photoURL: string
   email: string
   phoneNumber: string
-} | null> => {
-  try {
-    const result = await signInWithPopup(auth, googleProvider)
-    const { user } = result
-    const token = await result.user.getIdToken()
-    if (token.length === 0) {
-      throw new Error()
-    }
-    const { displayName, photoURL, email, phoneNumber } = user
-    return {
-      token,
-      displayName: displayName ?? 'Unknown',
-      photoURL: photoURL ?? '',
-      email: email ?? 'unknown@gmail.com',
-      phoneNumber: phoneNumber ?? '01000000000',
-    }
-  } catch (error: unknown) {
-    if (error instanceof FirebaseError) {
-      const errorMessage = error.message
-      alert(errorMessage)
-    } else {
-      alert('Unknown error!')
-    }
-    return null
+}> => {
+  await setPersistence(auth, browserLocalPersistence)
+
+  const result = await signInWithPopup(auth, googleProvider)
+  const { user } = result
+
+  const token = await result.user.getIdToken()
+  if (token.length === 0) {
+    throw new Error()
+  }
+  const { uid, displayName, photoURL, email, phoneNumber } = user
+
+  return {
+    uid,
+    token,
+    displayName: displayName ?? 'Unknown',
+    photoURL: photoURL ?? '',
+    email: email ?? '',
+    phoneNumber: phoneNumber ?? '',
   }
 }
 
-export const FirebaseService = { requestLogin }
+const signOut = async (): Promise<void> => await auth.signOut()
+
+export const FirebaseService = { getCurrentUID, signInWithGoogle, signOut, auth }
