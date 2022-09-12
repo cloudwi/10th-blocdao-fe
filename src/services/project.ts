@@ -35,6 +35,22 @@ export interface Project {
   view: number
 }
 
+// @sort-keys
+export interface ProjectWriteRequest {
+  address: string
+  contact: string
+  content: string
+  createUid: string
+  expectedStartDate: string
+  isOnline: boolean
+  isRecruitment: boolean
+  period: number
+  recruitmentNumber: number
+  recruitmentType: 'STUDY' | 'PROJECT'
+  stacks: Array<'FRONT' | 'BACK' | 'MOBILE' | 'ETC'>
+  title: string
+}
+
 const getList = async (): Promise<Project[]> => {
   try {
     const response = await projectAxios.get<Pageable<Project>>('/')
@@ -45,6 +61,20 @@ const getList = async (): Promise<Project[]> => {
   }
 }
 
+const add = async (project: ProjectWriteRequest, token: string): Promise<boolean> => {
+  try {
+    const response = await projectAxios.post('/', project, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    console.log(response)
+    return true
+  } catch (error) {
+    console.error(error)
+    return false
+  }
+}
+
 export const ProjectService = {
   getList,
+  add,
 }
