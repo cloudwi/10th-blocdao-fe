@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://blocdao.herokuapp.com/api/v1/projects'
+const BASE_URL = 'https://blocdao.herokuapp.com/api/projects'
 
 const projectAxios = axios.create({ baseURL: BASE_URL })
 
