@@ -61,7 +61,6 @@ const useAuth = () => {
       })
       .then(() => {
         dispatch(setUid(loginInfo.uid))
-        MemberService.setUID(loginInfo.uid)
         return true
       })
 
