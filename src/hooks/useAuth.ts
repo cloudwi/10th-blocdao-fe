@@ -40,6 +40,7 @@ const useAuth = () => {
     }
 
     const isSuccess = await MemberService.signIn({ token: loginInfo.token })
+      .then(() => true)
       .catch(async (error) => {
         console.error('Fail to login', error)
 
@@ -53,18 +54,22 @@ const useAuth = () => {
             memberStacks: [],
             profileLink: '',
           })
-        } else {
-          alert('로그인중에 에러가 발생하였습니다')
+          return true
         }
+
+        alert('로그인중에 에러가 발생하였습니다')
+        return false
       })
       .catch((error) => {
         console.error('Fail to signUp', error)
         alert('회원가입중에 에러가 발생하였습니다')
         return false
       })
-      .then(() => {
-        dispatch(setUid(loginInfo.uid))
-        return true
+      .then((canSignIn) => {
+        if (canSignIn) {
+          dispatch(setUid(loginInfo.uid))
+        }
+        return canSignIn
       })
 
     return isSuccess
