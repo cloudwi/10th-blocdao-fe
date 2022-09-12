@@ -44,7 +44,8 @@ const WritePage: React.FC = () => {
       return
     }
     const token = await user.getIdToken()
-    await ProjectService.add({ ...project, createUid: user.uid }, token)
+    const isSuccess = await ProjectService.add({ ...project, createUid: user.uid }, token)
+    alert(isSuccess ? '글이 정상적으로 추가되었습니다' : '글을 추가하는 중에 에러가 발생하였습니다')
   }
 
   return (
@@ -110,7 +111,7 @@ const WritePage: React.FC = () => {
             <Form.Group as={Row} className="mb-3">
               <Form.Check
                 type="switch"
-                checked={!project.isOnline}
+                defaultChecked={!project.isOnline}
                 onClick={() => setProject((project) => ({ ...project, isOnline: !project.isOnline }))}
                 label="오프라인 여부"
               />
@@ -133,7 +134,7 @@ const WritePage: React.FC = () => {
             <Form.Group as={Row} className="mb-3">
               <Form.Check
                 type="switch"
-                checked={project.isRecruitment}
+                defaultChecked={project.isRecruitment}
                 onClick={() => setProject((project) => ({ ...project, isRecruitment: !project.isRecruitment }))}
                 label="채용 여부"
               />
@@ -183,7 +184,7 @@ const WritePage: React.FC = () => {
                     key={stackName}
                     type={'checkbox'}
                     label={stackName}
-                    checked={project.stacks.includes(stackName)}
+                    defaultChecked={project.stacks.includes(stackName)}
                     onClick={() => {
                       const stacks = project.stacks.includes(stackName)
                         ? project.stacks.filter((oldStackName) => oldStackName !== stackName)

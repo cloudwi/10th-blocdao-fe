@@ -27,8 +27,10 @@ const useAuth = () => {
   const signInOrSignUp = useCallback(async (): Promise<boolean> => {
     const loginInfo = await FirebaseService.signInWithGoogle().catch((error) => {
       if (error instanceof FirebaseError) {
-        const errorMessage = error.message
-        alert(errorMessage)
+        if (error.code === 'auth/cancelled-popup-request') {
+          return null
+        }
+        alert(error.message)
       }
       return null
     })
@@ -41,22 +43,23 @@ const useAuth = () => {
       .catch(async (error) => {
         console.error('Fail to login', error)
 
-        if (error instanceof AxiosError) {
-          if (error.response?.status === 404) {
-            await MemberService.signUp({
-              token: loginInfo.token,
-              nickName: loginInfo.displayName,
-              imageUrl: loginInfo.photoURL,
-              email: loginInfo.email,
-              phone: loginInfo.phoneNumber,
-              memberStacks: [],
-              profileLink: '',
-            })
-          }
+        if (error instanceof AxiosError && error.response?.status === 404) {
+          await MemberService.signUp({
+            token: loginInfo.token,
+            nickName: loginInfo.displayName,
+            imageUrl: loginInfo.photoURL,
+            email: loginInfo.email,
+            phone: loginInfo.phoneNumber,
+            memberStacks: [],
+            profileLink: '',
+          })
+        } else {
+          alert('로그인중에 에러가 발생하였습니다')
         }
       })
       .catch((error) => {
         console.error('Fail to signUp', error)
+        alert('회원가입중에 에러가 발생하였습니다')
         return false
       })
       .then(() => {
