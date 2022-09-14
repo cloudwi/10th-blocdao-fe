@@ -51,11 +51,6 @@ const WritePage: React.FC = () => {
   return (
     <>
       <Header />
-<<<<<<< HEAD
-      <div className={cx('write')}>프로젝트 기본정보를 입력해주세요</div>
-      <br></br>
-      <div className={cx('write')}>모집구분</div>
-=======
       <div className={cx('write')}>
         <Container>
           <Form>
@@ -204,7 +199,6 @@ const WritePage: React.FC = () => {
           </Form>
         </Container>
       </div>
->>>>>>> c77b1b49556f730a36a78066f4b02f20ebd7cd73
     </>
   )
 }
