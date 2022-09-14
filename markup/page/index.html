@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script></head>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="navbar_navbar">
+        <img class="logo" src="img/logo.svg"></div>
+        <p>새글쓰기</p>
+    </div>
+    <br>
+    <h1>1. 프로젝트 기본정보를 입력해주세요.</h1>
+    <br><br>
+    모집구분<br><br>
+    <select>
+        <option selected>스터디/프로젝트</option>
+        <option>옵션1</option>
+        <option>옵션2</option>
+        <option>옵션3</option>
+      </select>
+      <br><br>
+      진행방식<br><br>
+      <select>
+        <option selected>온라인/오프라인</option>
+        <option>옵션1</option>
+        <option>옵션2</option>
+        <option>옵션3</option>
+      </select>
+      <br><br>
+      기술스택<br><br>
+      <select>
+        <option selected>프로젝트 사용스택</option>
+        <option>옵션1</option>
+        <option>옵션2</option>
+        <option>옵션3</option>
+      </select>
+      <br><br>
+      연락방법<br><br>
+      <select>
+        <option selected>카카오톡 오픈채팅</option>
+        <option>옵션1</option>
+        <option>옵션2</option>
+        <option>옵션3</option>
+      </select>
+      <br><br>
+      <h1>2. 프로젝트에 대해 소개해주세요.</h1>
+      <br><br>
+      <div class="container">
+        <form action="write.jsp" method="post">
+          <div class="form-group">
+            <label for="title">제목</label>
+      <!-- placeholder 속성 입력한 데이터가 없는 경우 배경으로 나타난다.실제적으로 입력을 100자까지로 지정 -->
+      <!-- required 속성을 설정하면 필수입력 사항이된다. -->
+      <!-- pattern 속성을 이용한 정규표현식으로 데이터의 유효성 검사를 할 수 있다. -->
+            <input type="text" class="form-control" id="title"
+             placeholder="제목 입력(4-100)" name="title"
+             maxlength="100" required="required"
+             pattern=".{4,100}">
+          </div>
+          <div class="form-group">
+         <label for="content">내용</label>
+      <!--  여러줄의 데이터를 입력하고 하고자 할때 textarea 태그를 사용한다. -->
+      <!--  textarea 안에 있는 모든 글자는 그대로 나타난다. 공백문자, tag, enter -->
+         <textarea class="form-control" rows="5" id="content"
+          name="content" placeholder="내용 작성"></textarea>
+       </div>
+          <div class="form-group">
+            <label for="writer">작성자</label>
+            <input type="text" class="form-control" id="writer"
+             placeholder="작성자(2자-10자)" name="writer">
+          </div>
+          <button type="submit" class="btn btn-default">취소</button>
+          <button type="submit" class="btn btn-default">글 등록</button>
+        </form>
+      </div>
+</body>
+</html>

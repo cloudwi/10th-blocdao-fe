@@ -11,7 +11,9 @@ const WritePage: React.FC = () => {
   return (
     <>
       <Header />
-      <div className={cx('write')}>WRITE PAGE</div>
+      <div className={cx('write')}>프로젝트 기본정보를 입력해주세요</div>
+      <br></br>
+      <div className={cx('write')}>모집구분</div>
     </>
   )
 }
