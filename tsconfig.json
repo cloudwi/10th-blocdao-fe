@@ -23,7 +23,9 @@
       "@components/*": ["./components/*"],
       "@pages/*": ["./pages/*"],
       "@services/*": ["./services/*"],
-      "@utils/*": ["./utils/*"]
+      "@utils/*": ["./utils/*"],
+      "@states/*": ["./states/*"],
+      "@hooks/*": ["./hooks/*"]
     },
     "jsx": "react-jsx"
   },

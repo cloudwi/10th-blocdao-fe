@@ -2,8 +2,7 @@ import classNames from 'classnames/bind'
 import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 
-import { FirebaseService } from '@services/firebase'
-import { MemberService } from '@services/member'
+import useAuth from '@hooks/useAuth'
 import LogoImg from 'assets/home/logo.svg'
 
 import styles from './index.module.css'
@@ -11,22 +10,7 @@ import styles from './index.module.css'
 const Header: React.FC = () => {
   const cx = useMemo(() => classNames.bind(styles), [])
 
-  const handleClickSignUpOrSignIn = async () => {
-    const loginInfo = await FirebaseService.requestLogin()
-    if (loginInfo === null) {
-      return
-    }
-
-    await MemberService.signUp({
-      token: loginInfo.idToken,
-      nickName: loginInfo.displayName,
-      imageUrl: loginInfo.photoURL,
-      email: loginInfo.email,
-      phone: loginInfo.phoneNumber,
-      memberStacks: [],
-      profileLink: '',
-    })
-  }
+  const { isLoggedIn, signInOrSignUp, signOut } = useAuth()
 
   return (
     <>
@@ -47,8 +31,8 @@ const Header: React.FC = () => {
             <Link to={'/find'}>
               <li>메이트모집</li>
             </Link>
-            <li className={cx('login_menu')} onClick={handleClickSignUpOrSignIn}>
-              로그인/회원가입
+            <li className={cx('login_menu')} onClick={!isLoggedIn ? signInOrSignUp : signOut}>
+              {!isLoggedIn ? <>로그인/회원가입</> : <>로그아웃</>}
             </li>
           </ul>
         </div>
