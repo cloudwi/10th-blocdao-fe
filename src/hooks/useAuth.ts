@@ -51,7 +51,7 @@ const useAuth = () => {
             imageUrl: loginInfo.photoURL,
             email: loginInfo.email,
             phone: loginInfo.phoneNumber,
-            memberStacks: [],
+            stacks: [],
             profileLink: '',
           })
           return true

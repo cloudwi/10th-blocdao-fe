@@ -19,13 +19,13 @@ interface SignUpParam {
   email: string
   phone: string
   profileLink: string
-  memberStacks: number[]
+  stacks: string[]
 }
 
-const signUp = async ({ token, nickName, imageUrl, email, phone, profileLink, memberStacks }: SignUpParam) => {
+const signUp = async ({ token, nickName, imageUrl, email, phone, profileLink, stacks }: SignUpParam) => {
   await memberAxios.post(
     '/',
-    { nickName, imageUrl, email, phone, profileLink, memberStacks },
+    { nickName, imageUrl, email, phone, profileLink, stacks },
     { headers: { Authorization: `Bearer ${token}` } },
   )
 }
