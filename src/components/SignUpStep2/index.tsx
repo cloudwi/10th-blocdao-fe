@@ -20,10 +20,10 @@ const SignUpStep2: React.FC<Props> = ({ selectedStack, onStackChanged, onNext })
       <h1>반가워요! 기술스택, 직무도 선택해주세요!</h1>
       <br />
       <br />
-      <select>
+      <select onChange={(e) => onStackChanged((e.target.value as StackName) || null)}>
         <option selected={selectedStack === null}>기술스택</option>
         {StackService.getNames().map((stack) => (
-          <option key={stack} selected={selectedStack === stack} onClick={() => onStackChanged(stack)}>
+          <option key={stack} value={stack} selected={selectedStack === stack}>
             {stack}
           </option>
         ))}
