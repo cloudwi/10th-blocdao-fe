@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 
 import { FirebaseService } from '@services/firebase'
 import { MemberService } from '@services/member'
+import { StackName } from '@services/stack'
 import { setUid } from '@states/reducers/user'
 import { RootState, useAppDispatch } from '@states/store'
 
@@ -24,56 +25,62 @@ const useAuth = () => {
     return firebaseUser.uid === uid
   }, [firebaseUser, uid])
 
-  const signInOrSignUp = useCallback(async (): Promise<boolean> => {
-    const loginInfo = await FirebaseService.signInWithGoogle().catch((error) => {
-      if (error instanceof FirebaseError) {
-        if (error.code === 'auth/cancelled-popup-request') {
-          return null
-        }
-        alert(error.message)
-      }
-      return null
-    })
+  const signIn = useCallback(async (): Promise<'SUCCESS' | 'NEED_SIGN_UP' | 'FAILURE' | 'CANCELED'> => {
+    let loginInfo
+    try {
+      loginInfo = await FirebaseService.signInWithGoogle()
 
-    if (loginInfo === null) {
-      return false
-    }
-
-    const isSuccess = await MemberService.signIn({ token: loginInfo.token })
-      .then(() => true)
-      .catch(async (error) => {
+      try {
+        await MemberService.signIn({ token: loginInfo.token })
+        dispatch(setUid(loginInfo.uid))
+        return 'SUCCESS'
+      } catch (error) {
         console.error('Fail to login', error)
 
         if (error instanceof AxiosError && error.response?.status === 404) {
-          await MemberService.signUp({
-            token: loginInfo.token,
-            nickName: loginInfo.displayName,
-            imageUrl: loginInfo.photoURL,
-            email: loginInfo.email,
-            phone: loginInfo.phoneNumber,
-            stacks: [],
-            profileLink: '',
-          })
-          return true
+          return 'NEED_SIGN_UP'
         }
 
-        alert('로그인중에 에러가 발생하였습니다')
-        return false
-      })
-      .catch((error) => {
-        console.error('Fail to signUp', error)
-        alert('회원가입중에 에러가 발생하였습니다')
-        return false
-      })
-      .then((canSignIn) => {
-        if (canSignIn) {
-          dispatch(setUid(loginInfo.uid))
+        return 'FAILURE'
+      }
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        if (error.code === 'auth/cancelled-popup-request') {
+          return 'CANCELED'
         }
-        return canSignIn
-      })
-
-    return isSuccess
+        alert(error.message)
+      }
+      return 'FAILURE'
+    }
   }, [dispatch])
+
+  const signUp = useCallback(
+    async ({ nickName, stacks }: { nickName?: string; stacks?: StackName[] }): Promise<boolean> => {
+      if (firebaseUser === null) {
+        return false
+      }
+
+      const token = await firebaseUser.getIdToken()
+
+      try {
+        await MemberService.signUp({
+          token,
+          nickName: nickName ?? firebaseUser.displayName ?? '',
+          imageUrl: firebaseUser.photoURL ?? '',
+          email: firebaseUser.email ?? '',
+          phone: firebaseUser.phoneNumber ?? '',
+          stacks: stacks ?? [],
+          profileLink: '',
+        })
+        dispatch(setUid(firebaseUser.uid))
+        return true
+      } catch (error) {
+        console.error('Fail to signUp', error)
+        return false
+      }
+    },
+    [dispatch],
+  )
 
   const signOut = useCallback(async () => {
     await FirebaseService.signOut().then(() => dispatch(setUid(null)))
@@ -81,7 +88,8 @@ const useAuth = () => {
 
   return {
     isLoggedIn,
-    signInOrSignUp,
+    signIn,
+    signUp,
     signOut,
   }
 }
