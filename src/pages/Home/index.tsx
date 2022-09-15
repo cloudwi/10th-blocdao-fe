@@ -84,6 +84,100 @@ const HomePage: React.FC = () => {
             </div>
           )
         })}
+
+        <div className={cx('row')}>
+          <div className={cx('col-md-4')}>
+            <HomeCard
+              writer={'조정무님'}
+              updatedDate={new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000)}
+              title={
+                <>
+                  [사이드프로젝트] <br />
+                  동물 NFT 서비 스 - 프론트, 백엔드 개발자 모집
+                </>
+              }
+              stack={'React'}
+              estimatedStartDate={new Date('2022-08-29')}
+            />
+          </div>
+          <div className={cx('col-md-4')}>
+            <HomeCard
+              writer={'Dribbble'}
+              updatedDate={new Date(new Date().getTime() - 4 * 24 * 60 * 60 * 1000)}
+              title={
+                <>
+                  Junior Product <br />
+                  Designer-Singapore
+                </>
+              }
+              stack={'Product'}
+              appliedCapacity={42}
+              totalCapacity={70}
+            />
+          </div>
+          <div className={cx('col-md-4')}>
+            <HomeCard
+              writer={'Reddit'}
+              updatedDate={new Date(new Date().getTime() - 2 * 24 * 60 * 60 * 1000)}
+              title={
+                <>
+                  Software Architect <br />
+                  Java - USA
+                </>
+              }
+              stack={'Design'}
+              appliedCapacity={52}
+              totalCapacity={100}
+            />
+          </div>
+        </div>
+
+        <div className={cx('row')}>
+          <div className={cx('col-md-4')}>
+            <HomeCard
+              writer={'조정무님'}
+              updatedDate={new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000)}
+              title={
+                <>
+                  [사이드프로젝트] <br />
+                  동물 NFT 서비 스 - 프론트, 백엔드 개발자 모집
+                </>
+              }
+              stack={'React'}
+              estimatedStartDate={new Date('2022-08-29')}
+            />
+          </div>
+          <div className={cx('col-md-4')}>
+            <HomeCard
+              writer={'Dribbble'}
+              updatedDate={new Date(new Date().getTime() - 4 * 24 * 60 * 60 * 1000)}
+              title={
+                <>
+                  Junior Product <br />
+                  Designer-Singapore
+                </>
+              }
+              stack={'Product'}
+              appliedCapacity={42}
+              totalCapacity={70}
+            />
+          </div>
+          <div className={cx('col-md-4')}>
+            <HomeCard
+              writer={'Reddit'}
+              updatedDate={new Date(new Date().getTime() - 2 * 24 * 60 * 60 * 1000)}
+              title={
+                <>
+                  Software Architect <br />
+                  Java - USA
+                </>
+              }
+              stack={'Design'}
+              appliedCapacity={52}
+              totalCapacity={100}
+            />
+          </div>
+        </div>
       </div>
     </>
   )
