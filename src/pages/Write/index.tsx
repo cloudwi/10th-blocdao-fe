@@ -11,13 +11,12 @@ import DatePicker from 'react-datepicker'
 import Header from '@components/Header'
 import useFirebaseUser from '@hooks/useFirebaseUser'
 import { ProjectService, ProjectWriteRequest } from '@services/project'
+import { StackService } from '@services/stack'
 
 import styles from './index.module.css'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-datepicker/dist/react-datepicker.css'
-
-const STACK_NAMES = ['FRONT', 'BACK', 'MOBILE', 'ETC'] as const
 
 const WritePage: React.FC = () => {
   const cx = useMemo(() => classNames.bind(styles), [])
@@ -179,7 +178,7 @@ const WritePage: React.FC = () => {
                 기술 스택
               </Form.Label>
               <Col sm={10}>
-                {STACK_NAMES.map((stackName) => (
+                {StackService.getNames().map((stackName) => (
                   <Form.Check
                     key={stackName}
                     type={'checkbox'}

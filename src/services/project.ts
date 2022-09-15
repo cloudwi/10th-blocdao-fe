@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { StackName } from './stack'
+
 const BASE_URL = 'https://blocdao.herokuapp.com/api/projects'
 
 const projectAxios = axios.create({ baseURL: BASE_URL })
@@ -47,7 +49,7 @@ export interface ProjectWriteRequest {
   period: number
   recruitmentNumber: number
   recruitmentType: 'STUDY' | 'PROJECT'
-  stacks: Array<'FRONT' | 'BACK' | 'MOBILE' | 'ETC'>
+  stacks: StackName[]
   title: string
 }
 
