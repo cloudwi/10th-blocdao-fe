@@ -9,7 +9,7 @@ interface LoginParams {
 }
 
 const signIn = async ({ token }: LoginParams) => {
-  await memberAxios.get('/', { headers: { Authorization: `Bearer ${token}` } })
+  await memberAxios.get('', { headers: { Authorization: `Bearer ${token}` } })
 }
 
 interface SignUpParam {
@@ -24,7 +24,7 @@ interface SignUpParam {
 
 const signUp = async ({ token, nickName, imageUrl, email, phone, profileLink, stacks }: SignUpParam) => {
   await memberAxios.post(
-    '/',
+    '',
     { nickName, imageUrl, email, phone, profileLink, stacks },
     { headers: { Authorization: `Bearer ${token}` } },
   )

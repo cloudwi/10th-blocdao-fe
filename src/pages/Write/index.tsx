@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row'
 import DatePicker from 'react-datepicker'
 
 import Header from '@components/Header'
+import useAuth from '@hooks/useAuth'
 import useFirebaseUser from '@hooks/useFirebaseUser'
 import { ProjectService, ProjectWriteRequest } from '@services/project'
 import { StackService } from '@services/stack'
@@ -36,9 +37,10 @@ const WritePage: React.FC = () => {
   })
 
   const user = useFirebaseUser()
+  const { isLoggedIn } = useAuth()
 
   const handleSubmit = async () => {
-    if (user === null) {
+    if (user === null || !isLoggedIn) {
       alert('비로그인 상태입니다. 로그인해주세요.')
       return
     }
