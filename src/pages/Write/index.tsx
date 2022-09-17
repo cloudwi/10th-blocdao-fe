@@ -71,8 +71,6 @@ const WritePage: React.FC = () => {
       filteredContact.slice(numberCounts.reduce(sumReducer, 0)),
     ].join('-')
 
-    console.log(project.contact, adjustedContact)
-
     if (adjustedContact !== project.contact) {
       setProject((project) => ({ ...project, contact: adjustedContact }))
     }
@@ -91,13 +89,6 @@ const WritePage: React.FC = () => {
   const toDate = (dateString: string) => (dateString ? moment(dateString).toDate() : null)
 
   const toDateString = (date: Date | null) => (date ? moment(date).format('YYYY-MM-DD') : '')
-
-  console.log(
-    project.expectedStartDate,
-    toDate(project.expectedStartDate),
-    project.expectedEndDate,
-    toDate(project.expectedEndDate),
-  )
 
   return (
     <>
@@ -158,7 +149,6 @@ const WritePage: React.FC = () => {
                   endDate={toDate(project.expectedEndDate)}
                   onChange={(dateRange) => {
                     const [startDate, endDate] = dateRange
-                    console.log(dateRange)
                     setProject((project) => ({
                       ...project,
                       expectedStartDate: toDateString(startDate),
