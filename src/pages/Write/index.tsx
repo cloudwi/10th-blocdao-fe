@@ -27,9 +27,9 @@ const WritePage: React.FC = () => {
     contact: '',
     content: '',
     expectedStartDate: '',
+    expectedEndDate: '',
     isOnline: true,
     isRecruitment: false,
-    period: 1,
     recruitmentNumber: 1,
     recruitmentType: 'PROJECT',
     stacks: [],
@@ -88,6 +88,17 @@ const WritePage: React.FC = () => {
     alert(isSuccess ? '글이 정상적으로 추가되었습니다' : '글을 추가하는 중에 에러가 발생하였습니다')
   }
 
+  const toDate = (dateString: string) => (dateString ? moment(dateString).toDate() : null)
+
+  const toDateString = (date: Date | null) => (date ? moment(date).format('YYYY-MM-DD') : '')
+
+  console.log(
+    project.expectedStartDate,
+    toDate(project.expectedStartDate),
+    project.expectedEndDate,
+    toDate(project.expectedEndDate),
+  )
+
   return (
     <>
       <Header />
@@ -136,15 +147,24 @@ const WritePage: React.FC = () => {
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
               <Form.Label column sm={2}>
-                예상시작일정
+                예상 일정
               </Form.Label>
               <Col sm={10}>
                 <DatePicker
                   inline
-                  selected={project.expectedStartDate ? moment(project.expectedStartDate).toDate() : null}
-                  onChange={(date: Date) =>
-                    setProject((project) => ({ ...project, expectedStartDate: moment(date).format('YYYY-MM-DD') }))
-                  }
+                  selectsRange
+                  selected={toDate(project.expectedStartDate)}
+                  startDate={toDate(project.expectedStartDate)}
+                  endDate={toDate(project.expectedEndDate)}
+                  onChange={(dateRange) => {
+                    const [startDate, endDate] = dateRange
+                    console.log(dateRange)
+                    setProject((project) => ({
+                      ...project,
+                      expectedStartDate: toDateString(startDate),
+                      expectedEndDate: toDateString(endDate),
+                    }))
+                  }}
                 />
               </Col>
             </Form.Group>
