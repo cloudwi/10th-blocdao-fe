@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind'
 import moment from 'moment'
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
@@ -38,6 +38,45 @@ const WritePage: React.FC = () => {
 
   const user = useFirebaseUser()
   const { isLoggedIn } = useAuth()
+
+  useEffect(() => {
+    const filteredContact = project.contact.replace(/[^0-9/]/g, '')
+    const firstNumberCount = filteredContact.startsWith('02') ? 2 : 3
+
+    // 000-0000-0000
+    // 02-0000-0000
+    // 000-000-0000
+    // 000-000
+
+    const numberCounts = (() => {
+      if (filteredContact.length > firstNumberCount + 7) {
+        return [firstNumberCount, 4]
+      } else if (filteredContact.length > firstNumberCount + 3) {
+        return [firstNumberCount, 3]
+      } else if (filteredContact.length > firstNumberCount) {
+        return [firstNumberCount]
+      } else {
+        return []
+      }
+    })()
+
+    const sumReducer = (sum: number, value: number) => sum + value
+
+    const adjustedContact = [
+      ...numberCounts.map((count, offset) => {
+        const startOffset = numberCounts.slice(0, offset).reduce(sumReducer, 0)
+        const endOffset = startOffset + count
+        return filteredContact.slice(startOffset, endOffset)
+      }),
+      filteredContact.slice(numberCounts.reduce(sumReducer, 0)),
+    ].join('-')
+
+    console.log(project.contact, adjustedContact)
+
+    if (adjustedContact !== project.contact) {
+      setProject((project) => ({ ...project, contact: adjustedContact }))
+    }
+  }, [project.contact])
 
   const handleSubmit = async () => {
     if (user === null || !isLoggedIn) {
