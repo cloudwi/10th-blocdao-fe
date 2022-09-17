@@ -43,10 +43,10 @@ export interface ProjectWriteRequest {
   contact: string
   content: string
   createUid: string
+  expectedEndDate: string
   expectedStartDate: string
   isOnline: boolean
   isRecruitment: boolean
-  period: number
   recruitmentNumber: number
   recruitmentType: 'STUDY' | 'PROJECT'
   stacks: StackName[]
