@@ -67,7 +67,7 @@ const HomePage: React.FC = () => {
                 return (
                   <div className={cx('col-md-4')} key={project.id}>
                     <HomeCard
-                      writer={project.createUid}
+                      writer={`${project.nickName}님`}
                       updatedDate={new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000)}
                       title={
                         <>
@@ -76,7 +76,7 @@ const HomePage: React.FC = () => {
                         </>
                       }
                       stack={project.projectStacks?.join(',') ?? ''}
-                      estimatedStartDate={new Date(project.expectedStartDate)}
+                      estimatedStartDate={project.expectedStartDate ? new Date(project.expectedStartDate) : undefined}
                     />
                   </div>
                 )

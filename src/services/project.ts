@@ -24,11 +24,11 @@ export interface Project {
   address: string
   contact: string
   content: string
-  createUid: string
   expectedStartDate: string
   id: number
   isOnline: boolean
   isRecruitment: boolean
+  nickName: string
   period: number
   projectStacks: string[]
   recruitmentNumber: number

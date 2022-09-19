@@ -60,10 +60,7 @@ const HomeCard: React.FC<Props> = ({
             <h6 className={cx('mb-0')}>{writer}</h6> <span>{formattedUpdatedDate}</span>
           </div>
         </div>
-        <div className={cx('badge')}>
-          {' '}
-          <span>{stack}</span>{' '}
-        </div>
+        <div className={cx('badge')}> {stack && <span>{stack}</span>} </div>
       </div>
       <div className={cx('mt-5')}>
         <h3 className={cx('heading')}>{title}</h3>
